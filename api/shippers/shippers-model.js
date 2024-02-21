@@ -9,11 +9,17 @@ module.exports = {
 }
 
 async function get() {
-  return 'get wired'
+  //onst result = await db.raw('select * from shippers')
+  const result = await db('shippers')
+  return result
 }
 
-async function getById() {
-  return 'getById wired'
+async function getById(shipperId) {
+//select * from shippers where shipperid = 1
+  const [result] = await db('shippers')
+                        .where('shipperid', shipperId).first()
+
+  return result
 }
 
 async function create() {
