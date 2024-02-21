@@ -36,7 +36,9 @@ async function update(shipperId, changes) {
 }
 
 async function remove(shipperId) {
-  const  thing = await db('shippers').del().where('shipperid', shipperId)
+  const tobeDeleted = await getById(shipperId)
 
-  return thing
+  await db('shippers').del().where('shipperid', shipperId)
+
+  return tobeDeleted
 }
